@@ -1,0 +1,18 @@
+<article class="book">
+	<section class="book-head">
+		<h2><%= autor.last_name+ " " + autor.name %></h2>
+		<%= link_to 'Edit', edit_autor_path(autor) %>
+		|
+		<%= link_to 'Delete', autor_path(autor), method: :delete, data: { confirm: 'Do you want delete this autor?'} %>
+	</section>
+
+	<section class="book-author">
+		<h5>Year of birth:</h5>
+		<%= autor.year_of_birth %>
+		<% if autor.year_of_death? %>
+		<h5>Year of death: </h5>
+		<%= autor.year_of_death %>
+		<% end %>
+	</section>
+	
+</article>

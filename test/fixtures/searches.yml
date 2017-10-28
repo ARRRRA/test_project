@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  autor_id: 1
+  genre: MyString
+  treasure: MyString
+
+two:
+  keywords: MyString
+  autor_id: 1
+  genre: MyString
+  treasure: MyString
