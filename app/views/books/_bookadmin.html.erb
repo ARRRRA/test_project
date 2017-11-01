@@ -1,6 +1,10 @@
+<% @books.each do |book| %>
 <article class="book">
 	<section class="book-head">
 		<h2><%= link_to book.name, book_path(book) %></h2>
+		<%= link_to 'Edit', edit_book_path(book) %>
+		|
+		<%= link_to 'Delete', book_path(book), method: :delete, data: { confirm: 'Do you want delete this book?'} %>
 	</section>
 
 	<section class="book-author">
@@ -8,3 +12,5 @@
 	</section>
 	
 </article>
+
+<% end %>

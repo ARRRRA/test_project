@@ -1,8 +1,34 @@
 class BooksController < ApplicationController
 
 	before_action :set_book, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, :except => [:index, :show]
+  	before_action :authenticate_admin!, :except => [:index, :show]
+
+
+	def authenticate_admin!
+    	# check if current user is admin
+    	unless current_user.admin
+      	# if current_user is not admin redirect to some route
+      	redirect_to books_url
+    	end
+    	# if current_user is admin he will proceed to edit action
+  	end
+
 
 	def index
+		@books = Book.search(params[:search])
+		if user_signed_in? && current_user.admin
+				redirect_to index_admin_books_url
+		end
+	end
+
+	def import
+	  Book.import(params[:file])
+
+	  redirect_to root_url, notice: 'Book imported.'
+	end
+
+	def index_admin
 		@books = Book.search(params[:search])
 	end
 
@@ -49,6 +75,6 @@ class BooksController < ApplicationController
 	end
 
 	def book_params
-		params.require(:book).permit(:name, :autor_id, :genre, :descriptions, :treasure, :available, :count)
+		params.require(:book).permit(:name, :autor_id, :genre, :descriptions, :treasure, :available)
 	end
 end

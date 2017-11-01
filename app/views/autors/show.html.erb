@@ -1,9 +1,10 @@
 <article class="book">
 	<section class="book-head">
 		<h1><%= @autor.name %></h1>
-		<%= link_to 'Edit', edit_autor_path(@autor) %>
-		|
-		<%= link_to 'Delete', autor_path(@autor), method: :delete, data: { confirm: 'Do you want delete this autor?'} %>
+		
+			<%= link_to 'Edit', edit_autor_path(@autor) %> |
+			<%= link_to 'Delete', autor_path(@autor), method: :delete, data: { confirm: 'Do you want delete this autor?'} %>
+		
 	</section>
 
 	<section class="book-body">

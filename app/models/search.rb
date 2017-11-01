@@ -11,7 +11,7 @@ class Search < ApplicationRecord
 private
 
 	def find_books
-		books = Book.all
+		books = Book.where(available: true)
 		books = books.where("name LIKE ?", "%#{keywords}%") if keywords.present?
 		books = books.where("autor_id LIKE ?", "%#{autor_id}%") if autor_id.present?
 		books = books.where("genre LIKE ?", "%#{genre}%") if genre.present?

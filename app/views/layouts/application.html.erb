@@ -14,11 +14,27 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <div class="container">
       <a class="navbar-brand" href="<%= books_path %>">All Books</a>
-      <a class="nav-item nav-link disabled" href="<%= new_book_path %>">New book</a>
+      
       <a class="nav-item nav-link disabled" href="<%= autors_path %>">All autor</a>
-      <a class="nav-item nav-link disabled" href="<%= new_autor_path %>">New autor</a>
+      <% if current_user %>
+        <% if current_user.admin==true %>
+          <a class="nav-item nav-link disabled" href="<%= new_autor_path %>">New autor</a>
+          <a class="nav-item nav-link disabled" href="<%= new_book_path %>">New book</a>
+        <% end %>
+      <% end %>
       <a class="nav-item nav-link disabled" href="<%= new_search_path %>">Search</a>
   </div>
+  <div id="container">
+    <div id="user_nav">
+      <% if user_signed_in? %>
+        <%= link_to 'Edit profile', edit_user_registration_path %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", new_user_registration_path %>
+        <%= link_to "Login", new_user_session_path%>
+      <% end %>
+    </div>
+  </div>>
 </nav>
     
     <div class="container main">

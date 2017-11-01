@@ -1,6 +1,19 @@
 class AutorsController < ApplicationController
 
 	before_action :set_autor, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, :except => [:index, :show]
+  	before_action :authenticate_admin!, :except => [:index, :show]
+
+
+	def authenticate_admin!
+    # check if current user is admin
+    	unless current_user.admin
+      	# if current_user is not admin redirect to some route
+      	redirect_to books_url
+    	end
+    # if current_user is admin he will proceed to edit action
+  	end
+
 
 	def index
 		@autors = Autor.all

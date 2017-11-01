@@ -1,9 +1,6 @@
 <article class="book">
 	<section class="book-head">
 		<h1><%= @book.name %></h1>
-		<%= link_to 'Edit', edit_book_path(@book) %>
-		|
-		<%= link_to 'Delete', book_path(@book), method: :delete, data: { confirm: 'Do you want delete this book?'} %>
 	</section>
 
 	<section class="book-body">

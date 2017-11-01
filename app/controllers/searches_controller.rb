@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+	before_action :authenticate_user!, :except => [:index, :show, :new, :create]
+
 	def new
 		@search = Search.new
 		@categories = Book.distinct.pluck(:autor_id)
