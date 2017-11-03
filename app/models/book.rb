@@ -5,12 +5,14 @@ class Book < ApplicationRecord
 
 	validates :name, :autor_id, :genre, :descriptions, :treasure, presence: true
 
+  scope :books_available, ->{where(available: true)}
+
 
 	def self.search(search)
 		if search
-   			self.where("name like ?", "%#{search}%").where(available: true)
+   			self.where("name or genre or descriptions or treasure like ? ", "%#{search}%").books_available
     	else
-    		self.where(available: true)
+    		self.books_available
   		end
 	end
 
