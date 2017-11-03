@@ -7,7 +7,9 @@ class BooksController < ApplicationController
 
 
 	def index
-		@books = Book.search(params[:search]).includes(:autor)
+		#@books = Book.search(params[:search])
+		@books = Book.search(params[:term])
+
 
 		if user_signed_in? && current_user.admin
 				redirect_to index_admin_books_url

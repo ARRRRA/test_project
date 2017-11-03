@@ -8,13 +8,13 @@ class Book < ApplicationRecord
   scope :books_available, ->{where(available: true)}
 
 
-	def self.search(search)
-		if search
-   			self.where("name or genre or descriptions or treasure like ? ", "%#{search}%").books_available
-    	else
-    		self.books_available
-  		end
-	end
+def self.search(term)
+  if term
+    where('name || descriptions || genre || treasure LIKE ?', "%#{term}%").order('id DESC').books_available
+  else
+    order('id DESC').books_available
+  end
+end
 
 
 def self.import(file)

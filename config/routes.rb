@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
 
 	resources :autors
-	resources :searches
 
 	
 	resources :books do
